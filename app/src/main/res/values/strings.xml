@@ -14,4 +14,14 @@
         completions."
     </string>
     <string name="title_activity_login">Login</string>
+    <string name="password">Password</string>
+    <string name="last_name">Lastname</string>
+    <string name="first_name">Firstname</string>
+    <string name="username">Username</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="hello_blank_fragment">hello</string>
+    <string name="hello_blank_fragment_booking">hello 2</string>
+    <string name="action_logout">Logout</string>
+    <string name="openDrawer">Open Drawer </string>
+    <string name="closeDrawer">Close Drawer </string>
 </resources>

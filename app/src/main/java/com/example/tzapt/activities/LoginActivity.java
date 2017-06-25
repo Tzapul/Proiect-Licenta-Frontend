@@ -3,6 +3,7 @@ package com.example.tzapt.activities;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -68,6 +69,22 @@ public class LoginActivity extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 login(emailText.getText().toString(), passwordText.getText().toString());
+            }
+        });
+
+        createAccount.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                intent.putExtra("Client", "asd");
+                LoginActivity.this.startActivity(intent);
+            }
+        });
+
+        guestAccount.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, MainView.class);
+                intent.putExtra("Client", "asd");
+                LoginActivity.this.startActivity(intent);
             }
         });
     }

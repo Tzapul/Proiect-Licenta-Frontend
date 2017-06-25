@@ -24,6 +24,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.tzapt.activities.MainView"
+            android:label="MainView">
+        </activity>
+        <activity
+            android:name="com.example.tzapt.activities.RegisterActivity"
+            android:label="Register">
+        </activity>
+        <activity
+            android:name="com.example.tzapt.activities.NewReservationActivity"
+            android:label="New Reservation">
+        </activity>
     </application>
 
 </manifest>
