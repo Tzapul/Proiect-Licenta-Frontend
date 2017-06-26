@@ -5,9 +5,13 @@
     tools:context="com.example.tzapt.fragments.BookingsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment_booking" />
+   <ListView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/reservations_list_view">
+
+   </ListView>
+
+
 
 </FrameLayout>

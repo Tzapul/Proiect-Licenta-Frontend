@@ -1,32 +1,24 @@
 package com.example.tzapt.models;
 
+import java.io.Serializable;
+
 /**
  * Created by tzapt on 6/24/2017.
  */
 
-public class Client {
+public class Client implements Serializable {
 
-    private Account account;
-    private PersonDetails personDetails;
+    private int id;
 
-    public Client(Account account, PersonDetails personDetails) {
-        this.account = account;
-        this.personDetails = personDetails;
+    public Client(int id) {
+        this.id = id;
     }
 
-    public Account getAccount() {
-        return account;
+    public int getId() {
+        return id;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    public PersonDetails getPersonDetails() {
-        return personDetails;
-    }
-
-    public void setPersonDetails(PersonDetails personDetails) {
-        this.personDetails = personDetails;
+    public void setId(int id) {
+        this.id = id;
     }
 }

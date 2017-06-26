@@ -7,7 +7,7 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="My account" />
         <item
-            android:id="@+id/my_reservation"
+            android:id="@+id/my_reservations"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Bookings" />
     </group>

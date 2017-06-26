@@ -10,6 +10,7 @@ import com.example.tzapt.activities.MainView;
 import com.example.tzapt.activities.RegisterActivity;
 import com.example.tzapt.models.Account;
 import com.example.tzapt.models.Client;
+import com.example.tzapt.models.Guest;
 import com.example.tzapt.models.PersonDetails;
 import com.example.tzapt.models.User;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -18,16 +19,16 @@ import com.loopj.android.http.SyncHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 
 /**
- * Created by tzapt on 6/22/2017.
+ * Created by tzapt on 6/26/2017.
  */
 
-public class RegisterTask extends AsyncTask<Object, Void, String> {
+public class GuestTask extends AsyncTask<Object, Void, String> {
 
     private String requestUrl;
     private int code;
@@ -35,7 +36,7 @@ public class RegisterTask extends AsyncTask<Object, Void, String> {
     private AppCompatActivity parentActivity;
 
 
-    public RegisterTask(RegisterActivity registerActivity) {
+    public GuestTask(RegisterActivity registerActivity) {
         this.parentActivity = registerActivity;
     }
 
@@ -48,32 +49,23 @@ public class RegisterTask extends AsyncTask<Object, Void, String> {
     protected String doInBackground(Object... params) {
 
         try {
-            registerClient(params[0], params[1], params[2], params[3], params[4], params[5]);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+            sendPost();
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+
         return null;
     }
 
-    private void registerClient(Object firstname, Object lastname, Object email, Object phone, Object username, Object password) throws IOException, JSONException {
-
+    private void sendPost() throws UnsupportedEncodingException {
         SyncHttpClient client = new SyncHttpClient();
 
         JSONObject params = new JSONObject();
 
-        params.put("firstName", firstname.toString());
-        params.put("lastName", lastname.toString());
-        params.put("email", email.toString());
-        params.put("phoneNumber", phone.toString());
-        params.put("username", username.toString());
-        params.put("password", password.toString());
-
         StringEntity entity = new StringEntity(params.toString());
-
         client.addHeader("Content-Type", "application/json");
-        client.post(parentActivity, requestUrl + "/register", entity, "application/json", new AsyncHttpResponseHandler() {
+
+        client.post(parentActivity, requestUrl + "/guest", entity, "application/json", new AsyncHttpResponseHandler() {
 
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
@@ -88,8 +80,6 @@ public class RegisterTask extends AsyncTask<Object, Void, String> {
                 System.out.println(new String(bytes));
             }
         });
-
-
     }
 
     @Override
@@ -104,17 +94,8 @@ public class RegisterTask extends AsyncTask<Object, Void, String> {
                 JSONObject object = new JSONObject(response);
 
                 int id = object.getInt("id");
-                String username = object.getString("username");
-                String firstname = object.getString("firstName");
-                String lastname = object.getString("lastName");
-                String phoneNumber = object.getString("phoneNumber");
-                String email = object.getString("email");
-                String password = object.getString("password");
 
-                Account account = new Account(username, password, email);
-                PersonDetails personDetails = new PersonDetails(firstname,lastname,phoneNumber);
-
-                client = new User(id, account,personDetails);
+                client = new Guest(id);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

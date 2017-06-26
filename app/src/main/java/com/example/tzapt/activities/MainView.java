@@ -1,10 +1,7 @@
 package com.example.tzapt.activities;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,8 +13,6 @@ import android.view.MenuItem;
 
 import com.example.tzapt.fragments.BookingsFragment;
 import com.example.tzapt.fragments.MyAccountFragment;
-
-import static android.R.attr.fragment;
 
 public class MainView extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -39,8 +34,8 @@ public class MainView extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.getMenu().performIdentifierAction(R.id.my_reservation, 0);
-        navigationView.setCheckedItem(R.id.my_reservation);
+        navigationView.getMenu().performIdentifierAction(R.id.my_reservations, 0);
+        navigationView.setCheckedItem(R.id.my_reservations);
     }
 
     @Override
@@ -90,7 +85,7 @@ public class MainView extends AppCompatActivity
                     fragment,
                     fragment.getTag()).commit();
 
-        } else if (id == R.id.my_reservation) {
+        } else if (id == R.id.my_reservations) {
 
             BookingsFragment fragment = new BookingsFragment();
             FragmentManager manager = getSupportFragmentManager();
