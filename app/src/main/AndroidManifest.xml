@@ -18,9 +18,14 @@
         <activity
             android:name="com.example.tzapt.activities.LoginActivity"
             android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
-            android:name="com.example.tzapt.activities.MainView"
+            android:name="com.example.tzapt.activities.UserMainView"
             android:label="MainView">
         </activity>
         <activity
@@ -30,11 +35,6 @@
         <activity
             android:name="com.example.tzapt.activities.NewReservationActivity"
             android:label="New Reservation">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

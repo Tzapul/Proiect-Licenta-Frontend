@@ -1,10 +1,12 @@
 package com.example.tzapt.models;
 
+import java.io.Serializable;
+
 /**
  * Created by tzapt on 6/24/2017.
  */
 
-public class PersonDetails {
+public class PersonDetails implements Serializable {
 
     private String firstName;
     private String lastName;

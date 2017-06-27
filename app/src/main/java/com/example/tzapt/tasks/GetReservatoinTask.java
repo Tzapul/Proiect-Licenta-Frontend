@@ -1,20 +1,11 @@
 package com.example.tzapt.tasks;
 
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
-import com.example.tzapt.activities.MainView;
-import com.example.tzapt.activities.RegisterActivity;
 import com.example.tzapt.adapters.MyReservationsAdapter;
-import com.example.tzapt.models.Account;
+import com.example.tzapt.helpers.Util;
 import com.example.tzapt.models.Client;
-import com.example.tzapt.models.PersonDetails;
 import com.example.tzapt.models.Reservation;
-import com.example.tzapt.models.Table;
-import com.example.tzapt.models.User;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.SyncHttpClient;
 
@@ -22,35 +13,34 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
-import static android.R.id.list;
-
 /**
  * Created by tzapt on 6/26/2017.
  */
 
-public class GetReservatoinTask extends AsyncTask<Object, Void, String> {
+public class GetReservatoinTask extends DefaultTask {
 
-    private String requestUrl;
-    private int code;
-    private String response;
-    private AppCompatActivity parentActivity;
     private MyReservationsAdapter reservationsAdapter;
     private Client client;
 
-    public GetReservatoinTask(RegisterActivity registerActivity, MyReservationsAdapter reservationsAdapter, Client client) {
-        this.parentActivity = registerActivity;
+    public GetReservatoinTask(AppCompatActivity parentActivity, MyReservationsAdapter reservationsAdapter, Client client) {
+        super(parentActivity);
         this.reservationsAdapter = reservationsAdapter;
         this.client = client;
     }
 
     @Override
     protected void onPreExecute() {
-        requestUrl = "http://192.168.1.104:8080";
+        try {
+            requestUrl = Util.getProperty("localhost", parentActivity.getApplicationContext());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

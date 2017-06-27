@@ -1,11 +1,10 @@
 package com.example.tzapt.tasks;
 
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.example.tzapt.decorators.CustomDayViewDecorator;
-import com.example.tzapt.models.DayOff;
+import com.example.tzapt.helpers.Util;
 import com.example.tzapt.models.Table;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.SyncHttpClient;
@@ -17,9 +16,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -29,22 +28,22 @@ import cz.msebera.android.httpclient.Header;
  * Created by tzapt on 6/25/2017.
  */
 
-public class GetDaysOffTask extends AsyncTask<Object, Void, String> {
+public class GetDaysOffTask extends DefaultTask {
 
-    private AppCompatActivity parentActivity;
-    private String requestUrl;
-    private String response;
-    private int code;
     private MaterialCalendarView calendarView;
 
     public GetDaysOffTask(AppCompatActivity activity, MaterialCalendarView calendarView) {
-        this.parentActivity = activity;
+        super(activity);
         this.calendarView = calendarView;
     }
 
     @Override
     protected void onPreExecute() {
-        requestUrl = "http://192.168.1.105:8080";
+        try {
+            requestUrl = Util.getProperty("localhost", parentActivity.getApplicationContext());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -70,7 +69,9 @@ public class GetDaysOffTask extends AsyncTask<Object, Void, String> {
 
             @Override
             public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
-                Log.i("asdad", new String(bytes));
+                if(bytes != null) {
+                    Log.i("asdad", new String(bytes));
+                }
             }
         });
 

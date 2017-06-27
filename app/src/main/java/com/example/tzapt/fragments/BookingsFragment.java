@@ -11,14 +11,17 @@ import android.widget.ListView;
 import com.example.tzapt.activities.R;
 import com.example.tzapt.adapters.MyReservationsAdapter;
 import com.example.tzapt.models.Reservation;
+import com.example.tzapt.models.User;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class BookingsFragment extends Fragment {
+
     private View view;
     private ListView reservationListView;
     private MyReservationsAdapter myReservationsAdapter;
+    private User client;
 
     public BookingsFragment() {
     }

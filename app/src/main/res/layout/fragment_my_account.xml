@@ -1,4 +1,5 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,4 +7,219 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+        android:layout_width="29dp"
+        android:layout_height="551dp"
+        tools:context="com.example.tzapt.activities.RegisterActivity"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            tools:layout_editor_absoluteY="25dp"
+            tools:layout_editor_absoluteX="0dp">
+
+            <requestFocus />
+        </LinearLayout>
+
+    <EditText
+        android:id="@+id/passwordText"
+        android:layout_width="125dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/password"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        app:layout_constraintLeft_toRightOf="@+id/passwordLbl"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/phoneText"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.671" />
+
+        <EditText
+            android:id="@+id/lNameText"
+            android:layout_width="125dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:hint="@string/last_name"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            app:layout_constraintLeft_toRightOf="@+id/lNameLbl"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/fNameText"
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0.671" />
+
+        <EditText
+            android:id="@+id/fNameText"
+            android:layout_width="125dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:hint="@string/first_name"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            app:layout_constraintLeft_toRightOf="@+id/fNameLbl"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0.63" />
+
+        <EditText
+            android:id="@+id/phoneText"
+            android:layout_width="125dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:hint="@string/phone_number"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            app:layout_constraintLeft_toRightOf="@+id/phoneLbl"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0.63"
+            android:layout_marginTop="31dp"
+            app:layout_constraintTop_toBottomOf="@+id/emailText" />
+
+    <EditText
+        android:id="@+id/emailText"
+        android:layout_width="125dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        app:layout_constraintLeft_toRightOf="@+id/emailLbl"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/lNameText"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.63" />
+
+    <TextView
+        android:id="@+id/passwordLbl"
+        android:layout_width="133dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="New Password :"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneLbl" />
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/content_register"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_constraintBottom_creator="1"
+            tools:layout_constraintLeft_creator="1"
+            tools:layout_constraintRight_creator="1" />
+
+        <TextView
+            android:id="@+id/lNameLbl"
+            android:layout_width="133dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="33dp"
+            android:gravity="center"
+            android:text="Lastname :"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fNameLbl"
+            android:layout_marginStart="45dp" />
+
+        <TextView
+            android:id="@+id/emailLbl"
+            android:layout_width="133dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:text="Email :"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lNameLbl"
+            android:layout_marginStart="45dp" />
+
+        <TextView
+            android:id="@+id/phoneLbl"
+            android:layout_width="133dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:text="Phone Nubmer : "
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailLbl"
+            android:layout_marginStart="45dp" />
+
+        <TextView
+            android:id="@+id/fNameLbl"
+            android:layout_width="133dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:text="Firstname :"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="45dp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp">
+
+        <requestFocus />
+    </LinearLayout>
+
+    <requestFocus
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_register"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="155dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="25dp"
+        android:text="Save Changes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 </android.support.constraint.ConstraintLayout>

@@ -1,8 +1,8 @@
 package com.example.tzapt.activities;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,9 +13,12 @@ import android.view.MenuItem;
 
 import com.example.tzapt.fragments.BookingsFragment;
 import com.example.tzapt.fragments.MyAccountFragment;
+import com.example.tzapt.models.User;
 
-public class MainView extends AppCompatActivity
+public class UserMainView extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private User client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,8 @@ public class MainView extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().performIdentifierAction(R.id.my_reservations, 0);
         navigationView.setCheckedItem(R.id.my_reservations);
+
+        client = (User) getIntent().getSerializableExtra("client");
     }
 
     @Override
@@ -75,10 +80,13 @@ public class MainView extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("client", client);
 
         if (id == R.id.my_account) {
 
             MyAccountFragment fragment = new MyAccountFragment();
+            fragment.setArguments(bundle);
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction().replace(
                     R.id.main_content,
@@ -88,6 +96,7 @@ public class MainView extends AppCompatActivity
         } else if (id == R.id.my_reservations) {
 
             BookingsFragment fragment = new BookingsFragment();
+            fragment.setArguments(bundle);
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction().replace(
                     R.id.main_content,

@@ -2,10 +2,7 @@ package com.example.tzapt.activities;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,17 +34,17 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        firstnameText = (TextView) findViewById(R.id.firstnameTextView);
-        lastnameText = (TextView) findViewById(R.id.lastnameTextView);
-        emailText = (TextView) findViewById(R.id.emailTextView);
-        phoneText = (TextView) findViewById(R.id.phoneTextView);
+        firstnameText = (TextView) findViewById(R.id.fNameLbl);
+        lastnameText = (TextView) findViewById(R.id.lNameLbl);
+        emailText = (TextView) findViewById(R.id.emailLbl);
+        phoneText = (TextView) findViewById(R.id.phoneLbl);
         usernameText = (TextView) findViewById(R.id.usernameTextView);
-        passwordText = (TextView) findViewById(R.id.passwordTextView);
+        passwordText = (TextView) findViewById(R.id.passwordLbl);
 
-        firstnameEdit = (EditText) findViewById(R.id.firstnameEdit);
-        lastnameEdit = (EditText) findViewById(R.id.lastnameEdit);
-        emailEdit = (EditText) findViewById(R.id.emailEdit);
-        phoneEdit = (EditText) findViewById(R.id.phoneEdit);
+        firstnameEdit = (EditText) findViewById(R.id.fNameText);
+        lastnameEdit = (EditText) findViewById(R.id.lNameText);
+        emailEdit = (EditText) findViewById(R.id.emailText);
+        phoneEdit = (EditText) findViewById(R.id.phoneText);
         usernameEdit = (EditText) findViewById(R.id.usernameEdit);
         passwordEdit = (EditText) findViewById(R.id.passwordEdit);
 
