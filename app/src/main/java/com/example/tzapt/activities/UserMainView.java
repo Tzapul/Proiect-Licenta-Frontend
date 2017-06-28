@@ -1,7 +1,9 @@
 package com.example.tzapt.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -11,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.tzapt.fragments.AboutUsFragment;
 import com.example.tzapt.fragments.BookingsFragment;
 import com.example.tzapt.fragments.MyAccountFragment;
 import com.example.tzapt.models.User;
@@ -69,6 +72,10 @@ public class UserMainView extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
             return true;
         }
 
@@ -82,27 +89,22 @@ public class UserMainView extends AppCompatActivity
         int id = item.getItemId();
         Bundle bundle = new Bundle();
         bundle.putSerializable("client", client);
-
+        Fragment fragment = null;
         if (id == R.id.my_account) {
-
-            MyAccountFragment fragment = new MyAccountFragment();
+            fragment = new MyAccountFragment();
             fragment.setArguments(bundle);
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(
-                    R.id.main_content,
-                    fragment,
-                    fragment.getTag()).commit();
-
         } else if (id == R.id.my_reservations) {
-
-            BookingsFragment fragment = new BookingsFragment();
+            fragment = new BookingsFragment();
             fragment.setArguments(bundle);
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(
-                    R.id.main_content,
-                    fragment,
-                    fragment.getTag()).commit();
+        } else if (id == R.id.about_us){
+            fragment = new AboutUsFragment();
         }
+
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(
+                R.id.main_content,
+                fragment,
+                fragment.getTag()).commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

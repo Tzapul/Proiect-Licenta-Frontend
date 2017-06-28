@@ -55,8 +55,8 @@ public class MyAccountFragment extends Fragment {
 
         firstnameText = (TextView) view.findViewById(R.id.fNameLbl);
         lastnameText = (TextView) view.findViewById(R.id.lNameLbl);
-        emailText = (TextView) view.findViewById(R.id.emailLbl);
-        phoneText = (TextView) view.findViewById(R.id.phoneLbl);
+        emailText = (TextView) view.findViewById(R.id.phoneLbl);
+        phoneText = (TextView) view.findViewById(R.id.emailLbl);
         passwordText = (TextView) view.findViewById(R.id.passwordLbl);
 
         firstnameEdit = (EditText) view.findViewById(R.id.fNameText);

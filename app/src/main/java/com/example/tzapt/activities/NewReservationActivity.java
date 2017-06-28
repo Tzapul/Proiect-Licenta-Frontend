@@ -1,7 +1,6 @@
 package com.example.tzapt.activities;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,16 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.tzapt.decorators.CustomDayViewDecorator;
 import com.example.tzapt.models.User;
 import com.example.tzapt.tasks.GetDaysOffTask;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
-
-import java.util.Date;
-import java.util.HashSet;
 
 public class NewReservationActivity extends AppCompatActivity {
 
@@ -52,9 +46,9 @@ public class NewReservationActivity extends AppCompatActivity {
         phoneText = (EditText) findViewById(R.id.phoneText);
 
         nameLbl = (TextView) findViewById(R.id.nameLbl);
-        emailLbl = (TextView) findViewById(R.id.emailLbl);
+        emailLbl = (TextView) findViewById(R.id.phoneLbl);
         peopleLbl = (TextView) findViewById(R.id.peopleLbl);
-        phoneLbl = (TextView) findViewById(R.id.phoneLbl);
+        phoneLbl = (TextView) findViewById(R.id.emailLbl);
 
         cancelBtn = (Button) findViewById(R.id.cancelBtn);
         bookBtn = (Button) findViewById(R.id.bookBtn);

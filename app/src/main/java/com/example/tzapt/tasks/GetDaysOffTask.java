@@ -100,9 +100,7 @@ public class GetDaysOffTask extends DefaultTask {
 
                 calendarView.addDecorator(decorator);
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } catch (ParseException e) {
+            } catch (JSONException | ParseException e) {
                 e.printStackTrace();
             }
         }

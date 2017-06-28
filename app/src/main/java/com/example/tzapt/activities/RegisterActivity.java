@@ -36,8 +36,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         firstnameText = (TextView) findViewById(R.id.fNameLbl);
         lastnameText = (TextView) findViewById(R.id.lNameLbl);
-        emailText = (TextView) findViewById(R.id.emailLbl);
-        phoneText = (TextView) findViewById(R.id.phoneLbl);
+        emailText = (TextView) findViewById(R.id.phoneLbl);
+        phoneText = (TextView) findViewById(R.id.emailLbl);
         usernameText = (TextView) findViewById(R.id.usernameTextView);
         passwordText = (TextView) findViewById(R.id.passwordLbl);
 

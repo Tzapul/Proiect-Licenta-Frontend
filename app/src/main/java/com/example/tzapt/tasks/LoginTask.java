@@ -76,8 +76,10 @@ public class LoginTask extends DefaultTask {
 
             @Override
             public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
-                code = i;
-                response = new String(bytes);
+                if(bytes != null) {
+                    code = i;
+                    response = new String(bytes);
+                }
             }
         });
     }
@@ -117,9 +119,13 @@ public class LoginTask extends DefaultTask {
 
         } else {
             try {
-                JSONObject object = new JSONObject(response);
-                Toast.makeText(parentActivity, object.getString("message"), Toast.LENGTH_SHORT).show();
+                if(response != null) {
+                    JSONObject object = new JSONObject(response);
+                    Toast.makeText(parentActivity, object.getString("message"), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(parentActivity, "An error has occurred while doing the request!", Toast.LENGTH_SHORT).show();
 
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }

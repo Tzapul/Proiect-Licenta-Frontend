@@ -58,7 +58,7 @@ public class UpdateUserTask extends DefaultTask {
         StringEntity entity = new StringEntity(params.toString());
 
         client.addHeader("Content-Type", "application/json");
-        client.put(parentActivity, requestUrl + "/user/update" + "/" + id.toString(), entity, "application/json", new AsyncHttpResponseHandler() {
+        client.put(parentActivity, requestUrl + "/user" + "/" + id.toString(), entity, "application/json", new AsyncHttpResponseHandler() {
 
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
