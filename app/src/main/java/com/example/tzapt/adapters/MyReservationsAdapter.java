@@ -17,15 +17,13 @@ import com.example.tzapt.models.Reservation;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.R.id.list;
-
 /**
  * Created by tzapt on 6/26/2017.
  */
 
 public class MyReservationsAdapter extends ArrayAdapter<Reservation> {
 
-    private List<Reservation> reservations = new ArrayList<>();
+    private List<Reservation> list = new ArrayList<>();
 
 
     public MyReservationsAdapter(@NonNull Context context, @LayoutRes int resource) {
@@ -34,17 +32,17 @@ public class MyReservationsAdapter extends ArrayAdapter<Reservation> {
 
     public void add(Reservation reservation) {
         super.add(reservation);
-        reservations.add(reservation);
+        list.add(reservation);
     }
 
     @Override
     public int getCount() {
-        return reservations.size();
+        return list.size();
     }
 
     @Override
     public Reservation getItem(int position) {
-        return reservations.get(position);
+        return list.get(position);
     }
 
     @Override
@@ -52,29 +50,29 @@ public class MyReservationsAdapter extends ArrayAdapter<Reservation> {
         View row;
 
         row = convertView;
-        final ReservationHolder productHolder;
+        final ReservationHolder reservationHolder;
 
         if (row == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = layoutInflater.inflate(R.layout.row_reservation, parent, false);
-            productHolder = new MyReservationsAdapter.ReservationHolder();
+            reservationHolder = new MyReservationsAdapter.ReservationHolder();
 
 
-            productHolder.text_summary = (TextView) row.findViewById(R.id.reservation_summary);
-            productHolder.btn_delete = (Button) row.findViewById(R.id.delete_reservation_btn);
-            productHolder.tx_number_of_people = (TextView) row.findViewById(R.id.number_of_people);
+            reservationHolder.text_summary = (TextView) row.findViewById(R.id.reservation_summary);
+            reservationHolder.btn_delete = (Button) row.findViewById(R.id.delete_reservation_btn);
+            reservationHolder.tx_number_of_people = (TextView) row.findViewById(R.id.number_of_people);
 
-            row.setTag(productHolder);
+            row.setTag(reservationHolder);
 
         } else {
-            productHolder = (MyReservationsAdapter.ReservationHolder) row.getTag();
+            reservationHolder = (MyReservationsAdapter.ReservationHolder) row.getTag();
         }
 
         final Reservation reservation = (Reservation) this.getItem(position);
-        productHolder.text_summary.setText(reservation.getName());
-        productHolder.tx_number_of_people.setText("Number of people " + reservation.getPeople());
+        reservationHolder.text_summary.setText(reservation.getName());
+        reservationHolder.tx_number_of_people.setText("Number of people " + reservation.getPeople());
 
-        productHolder.btn_delete.setOnClickListener(new View.OnClickListener() {
+        reservationHolder.btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                // myOrderFragment.removeProduct(reservation);
@@ -93,15 +91,15 @@ public class MyReservationsAdapter extends ArrayAdapter<Reservation> {
     @Override
     public void remove(@Nullable Reservation object) {
         super.remove(object);
-        reservations.remove(object);
+        list.remove(object);
     }
 
     public void clearData(){
-        reservations.clear();
+        list.clear();
     }
 
     public List<Reservation> getList() {
-        return reservations;
+        return list;
     }
 
 }

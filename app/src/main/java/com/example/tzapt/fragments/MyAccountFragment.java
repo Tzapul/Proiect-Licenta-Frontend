@@ -97,5 +97,4 @@ public class MyAccountFragment extends Fragment {
         phoneEdit.setText(details.getPhone());
         emailEdit.setText(account.getEmail());
     }
-
 }

@@ -58,7 +58,7 @@ public class GetDaysOffTask extends DefaultTask {
 
         SyncHttpClient client = new SyncHttpClient();
 
-        client.get(requestUrl + "/daysOff/getAll", new AsyncHttpResponseHandler() {
+        client.get(requestUrl + "/daysOff", new AsyncHttpResponseHandler() {
 
 
             @Override
