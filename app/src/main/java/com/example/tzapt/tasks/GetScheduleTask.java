@@ -1,6 +1,7 @@
 package com.example.tzapt.tasks;
 
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -85,12 +86,17 @@ public class GetScheduleTask extends DefaultTask {
                 TableRow row;
                 TextView dayText;
                 TextView workingHoursText;
+                daysTable.removeAllViews();
+                daysTable.setColumnStretchable(0, true);
+                daysTable.setColumnStretchable(1, true);
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject object =  array.getJSONObject(i);
 
-                    String date = object.getString("date");
+                    String date = object.getString("day");
                     String start = object.getString("start");
                     String end = object.getString("end");
+
+                    date = date.substring(0,1).toUpperCase() + date.substring(1, date.length()).toLowerCase();
 
                     row = new TableRow(parentActivity);
                     dayText = new TextView(parentActivity);

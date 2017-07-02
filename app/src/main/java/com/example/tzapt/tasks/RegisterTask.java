@@ -11,6 +11,7 @@ import com.example.tzapt.models.Account;
 import com.example.tzapt.models.Client;
 import com.example.tzapt.models.PersonDetails;
 import com.example.tzapt.models.User;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.SyncHttpClient;
 
@@ -64,6 +65,7 @@ public class RegisterTask extends DefaultTask {
         params.put("phoneNumber", phone.toString());
         params.put("username", username.toString());
         params.put("password", password.toString());
+        params.put("notificationKey", FirebaseInstanceId.getInstance().getToken());
 
         StringEntity entity = new StringEntity(params.toString());
 

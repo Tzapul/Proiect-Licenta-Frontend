@@ -55,7 +55,7 @@ public class GetReservatoinTask extends DefaultTask {
 
         SyncHttpClient client = new SyncHttpClient();
 
-        client.get(requestUrl + "/reservations" + "/" + this.client.getId(), new AsyncHttpResponseHandler() {
+        client.get(requestUrl + "/reservations/" + this.client.getId(), new AsyncHttpResponseHandler() {
 
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
@@ -85,8 +85,9 @@ public class GetReservatoinTask extends DefaultTask {
                     String name = object.getString("name");
                     String email = object.getString("email");
                     String date = object.getString("date");
-                    String phone = object.getString("phoneNumber");
+                    String phone = object.getString("phone");
                     int people = object.getInt("people");
+                    int hour = object.getInt("hour");
                     List<String> tablesName = new ArrayList<>();
 
                     JSONArray tables = object.getJSONArray("tablesList");
@@ -95,10 +96,11 @@ public class GetReservatoinTask extends DefaultTask {
                         tablesName.add(table);
                     }
 
-                    Reservation reservation = new Reservation(id, name, email, date, phone, people, tablesName);
+                    Reservation reservation = new Reservation(id, name, email, date, phone, people, hour, tablesName);
                     reservationsAdapter.add(reservation);
-
                 }
+
+                reservationsAdapter.notifyDataSetChanged();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
