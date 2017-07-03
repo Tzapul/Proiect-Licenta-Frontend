@@ -1,9 +1,11 @@
 package com.example.tzapt.adapters;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.tzapt.activities.R;
 import com.example.tzapt.models.Reservation;
+import com.example.tzapt.tasks.DeleteReservationTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +27,6 @@ import java.util.List;
 public class MyReservationsAdapter extends ArrayAdapter<Reservation> {
 
     private List<Reservation> list = new ArrayList<>();
-
 
     public MyReservationsAdapter(@NonNull Context context, @LayoutRes int resource) {
         super(context, resource);
@@ -46,7 +48,7 @@ public class MyReservationsAdapter extends ArrayAdapter<Reservation> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View row;
 
         row = convertView;
@@ -75,7 +77,8 @@ public class MyReservationsAdapter extends ArrayAdapter<Reservation> {
         reservationHolder.btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // myOrderFragment.removeProduct(reservation);
+                AsyncTask removeTask = new DeleteReservationTask((AppCompatActivity)getContext(), MyReservationsAdapter.this);
+                removeTask.execute(position);
             }
         });
 

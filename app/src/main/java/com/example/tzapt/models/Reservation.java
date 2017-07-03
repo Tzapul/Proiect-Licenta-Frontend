@@ -22,15 +22,18 @@ public class Reservation {
 
     private int people;
 
+    private int hour;
+
     private List<String> tablesList = new ArrayList<>();
 
-    public Reservation(int id, String name, String email, String date, String phone, int people, List<String> tablesList) {
+    public Reservation(int id, String name, String email, String date, String phone, int people, int hour, List<String> tablesList) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.date = date;
         this.phone = phone;
         this.people = people;
+        this.hour = hour;
         this.tablesList = tablesList;
     }
 
@@ -88,5 +91,13 @@ public class Reservation {
 
     public void setTablesList(List<String> tablesList) {
         this.tablesList = tablesList;
+    }
+
+    public int getHour() {
+        return hour;
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
     }
 }

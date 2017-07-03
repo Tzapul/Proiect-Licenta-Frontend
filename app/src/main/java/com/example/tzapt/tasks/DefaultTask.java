@@ -18,7 +18,7 @@ class DefaultTask extends AsyncTask<Object, Void, String> {
     String response;
     AppCompatActivity parentActivity;
 
-    DefaultTask(AppCompatActivity parentActivity) {
+    public DefaultTask(AppCompatActivity parentActivity) {
         this.parentActivity = parentActivity;
     }
 

@@ -12,16 +12,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.tzapt.fragments.AboutUsFragment;
 import com.example.tzapt.fragments.BookingsFragment;
 import com.example.tzapt.fragments.MyAccountFragment;
+import com.example.tzapt.models.Client;
+import com.example.tzapt.models.Guest;
 import com.example.tzapt.models.User;
 
 public class UserMainView extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private User client;
+    private Client client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,7 @@ public class UserMainView extends AppCompatActivity
         navigationView.getMenu().performIdentifierAction(R.id.my_reservations, 0);
         navigationView.setCheckedItem(R.id.my_reservations);
 
-        client = (User) getIntent().getSerializableExtra("client");
+        client = (Client) getIntent().getSerializableExtra("client");
     }
 
     @Override
@@ -98,6 +101,7 @@ public class UserMainView extends AppCompatActivity
             fragment.setArguments(bundle);
         } else if (id == R.id.about_us){
             fragment = new AboutUsFragment();
+
         }
 
         FragmentManager manager = getSupportFragmentManager();

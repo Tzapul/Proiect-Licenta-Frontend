@@ -1,23 +1,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="com.example.tzapt.fragments.BookingsFragment"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="499dp"
+        android:layout_height="match_parent"
         android:id="@+id/reservations_list_view">
-
     </ListView>
 
-    <Button
-        android:id="@+id/addButton"
+    <TextView android:id="@+id/empty_view"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="Add Booking" />
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        android:layout_centerInParent="true"
+        android:textSize="20dp"
+
+        android:text="No bookings"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3.5"
+        >
+
+        <Button
+            android:id="@+id/addButton"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:text="Add Booking" />
+    </RelativeLayout>
 
 
 </LinearLayout>

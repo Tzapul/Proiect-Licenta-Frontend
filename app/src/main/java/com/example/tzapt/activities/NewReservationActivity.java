@@ -6,15 +6,28 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.tzapt.decorators.CustomDayViewDecorator;
+import com.example.tzapt.helpers.Util;
+import com.example.tzapt.models.Account;
+import com.example.tzapt.models.Client;
+import com.example.tzapt.models.Guest;
+import com.example.tzapt.models.PersonDetails;
+import com.example.tzapt.models.Reservation;
 import com.example.tzapt.models.User;
 import com.example.tzapt.tasks.GetDaysOffTask;
+import com.example.tzapt.tasks.SaveReservationTask;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+
+import java.util.Date;
+import java.util.HashSet;
 
 public class NewReservationActivity extends AppCompatActivity {
 
@@ -22,6 +35,7 @@ public class NewReservationActivity extends AppCompatActivity {
     private EditText emailText;
     private EditText peopleText;
     private EditText phoneText;
+    private EditText hourText;
 
     private TextView nameLbl;
     private TextView emailLbl;
@@ -32,6 +46,7 @@ public class NewReservationActivity extends AppCompatActivity {
     private Button bookBtn;
 
     private MaterialCalendarView calendarView;
+    private Client client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +59,7 @@ public class NewReservationActivity extends AppCompatActivity {
         emailText= (EditText) findViewById(R.id.emailText);
         peopleText = (EditText) findViewById(R.id.peopleText);
         phoneText = (EditText) findViewById(R.id.phoneText);
+        hourText = (EditText) findViewById(R.id.hourText);
 
         nameLbl = (TextView) findViewById(R.id.nameLbl);
         emailLbl = (TextView) findViewById(R.id.phoneLbl);
@@ -59,30 +75,53 @@ public class NewReservationActivity extends AppCompatActivity {
 
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                if (selected) {
+                    //TODO validate date selected higher than our date.
+                }
+            }
+        });
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                NewReservationActivity.this.finish();
+            }
+        });
+
+        bookBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                //TODO validators
+
+                AsyncTask makeReservation = new SaveReservationTask(NewReservationActivity.this);
+                makeReservation.execute(new Reservation(0, nameText.getText().toString(), emailText.getText().toString(),
+                        Util.formatDate(calendarView.getSelectedDate()), phoneText.getText().toString(),
+                        Integer.valueOf(peopleText.getText().toString()), Integer.valueOf(hourText.getText().toString()),
+                        null), client.getId());
             }
         });
 
 
         Intent intent = this.getIntent();
-        Bundle bundle = intent.getExtras();
-        setFieldsFromClient(null);
+        client = (Client) intent.getSerializableExtra("client");
+        if (client instanceof User) {
+            setFieldsFromClient((User)client);
+        }
 
         AsyncTask getDaysOffTask = new GetDaysOffTask(this, calendarView);
         getDaysOffTask.execute();
     }
 
     public void setFieldsFromClient(User user) {
-       /* Account account = user.getAccount();
+        Account account = user.getAccount();
         PersonDetails details = user.getPersonDetails();
 
         nameText.setText(details.getFirstName() + " " + details.getLastName());
         emailText.setText(account.getEmail());
-        phoneText.setText(details.getPhone());*/
+        phoneText.setText(details.getPhone());
 
-//        HashSet<CalendarDay> days = new HashSet<>();
-//        days.add(new CalendarDay(new Date()));
-//        DayViewDecorator decorator = new CustomDayViewDecorator(days);
-//
-//        calendarView.addDecorator(decorator);
     }
 }
