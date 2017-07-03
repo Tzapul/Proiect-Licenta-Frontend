@@ -10,7 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class GuestMainView extends AppCompatActivity
+public class AdminMainView extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
@@ -69,9 +69,9 @@ public class GuestMainView extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.about_us_guest) {
+        if (id == R.id.daysOff) {
             // Handle the camera action
-        } else if (id == R.id.bookings_guest) {
+        } else if (id == R.id.schedule) {
 
         }
 

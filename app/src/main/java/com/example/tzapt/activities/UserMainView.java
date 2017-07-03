@@ -12,19 +12,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.tzapt.fragments.AboutUsFragment;
 import com.example.tzapt.fragments.BookingsFragment;
 import com.example.tzapt.fragments.MyAccountFragment;
 import com.example.tzapt.models.Client;
 import com.example.tzapt.models.Guest;
-import com.example.tzapt.models.User;
 
 public class UserMainView extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Client client;
+    private MenuItem myAccountItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +45,14 @@ public class UserMainView extends AppCompatActivity
         navigationView.getMenu().performIdentifierAction(R.id.my_reservations, 0);
         navigationView.setCheckedItem(R.id.my_reservations);
 
+        Menu menu = navigationView.getMenu();
+        myAccountItem = menu.findItem(R.id.my_account);
+
         client = (Client) getIntent().getSerializableExtra("client");
+
+        if (client instanceof Guest) {
+            myAccountItem.setVisible(false);
+        }
     }
 
     @Override
