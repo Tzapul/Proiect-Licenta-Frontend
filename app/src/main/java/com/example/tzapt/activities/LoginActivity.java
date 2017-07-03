@@ -2,18 +2,19 @@ package com.example.tzapt.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tzapt.helpers.Util;
 import com.example.tzapt.tasks.GuestTask;
 import com.example.tzapt.tasks.LoginTask;
+
+import java.io.IOException;
 
 /**
  * A login screen that offers login via email/password.
@@ -42,7 +43,11 @@ public class LoginActivity extends AppCompatActivity {
         signInButton = (Button) findViewById(R.id.signInBtn);
         signInButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                login(emailText.getText().toString(), passwordText.getText().toString());
+                try {
+                    login(emailText.getText().toString(), passwordText.getText().toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -62,8 +67,15 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void login(String username, String password) {
-        Log.i("as", "login");
+    private void login(String username, String password) throws IOException {
+        if(username.equals(Util.getProperty("admin_username", getApplicationContext())) && password.equals(Util.getProperty("admin_password", getApplicationContext()))) {
+            Intent intent = new Intent(this, AdminMainView.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         LoginTask authService = new LoginTask(this);
         authService.execute(username, password);
     }
