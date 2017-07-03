@@ -11,23 +11,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.tzapt.decorators.CustomDayViewDecorator;
 import com.example.tzapt.helpers.Util;
 import com.example.tzapt.models.Account;
 import com.example.tzapt.models.Client;
-import com.example.tzapt.models.Guest;
 import com.example.tzapt.models.PersonDetails;
 import com.example.tzapt.models.Reservation;
 import com.example.tzapt.models.User;
-import com.example.tzapt.tasks.GetDaysOffTask;
+import com.example.tzapt.tasks.GetDaysOffAndDecorateTask;
 import com.example.tzapt.tasks.SaveReservationTask;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
-
-import java.util.Date;
-import java.util.HashSet;
 
 public class NewReservationActivity extends AppCompatActivity {
 
@@ -111,7 +105,7 @@ public class NewReservationActivity extends AppCompatActivity {
             setFieldsFromClient((User)client);
         }
 
-        AsyncTask getDaysOffTask = new GetDaysOffTask(this, calendarView);
+        AsyncTask getDaysOffTask = new GetDaysOffAndDecorateTask(this, calendarView);
         getDaysOffTask.execute();
     }
 

@@ -9,6 +9,7 @@ import com.example.tzapt.models.Account;
 import com.example.tzapt.models.PersonDetails;
 import com.example.tzapt.models.Reservation;
 import com.example.tzapt.models.User;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.SyncHttpClient;
 
@@ -97,6 +98,13 @@ public class SaveReservationTask extends DefaultTask {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         if (code == 200) {
+            try {
+                JSONObject reservation = new JSONObject(response);
+                FirebaseMessaging.getInstance().subscribeToTopic(reservation.getString("date"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
             Toast.makeText(parentActivity, "The booking has been made!", Toast.LENGTH_SHORT).show();
             parentActivity.finish();
         } else {

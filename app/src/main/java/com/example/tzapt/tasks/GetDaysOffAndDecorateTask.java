@@ -3,15 +3,14 @@ package com.example.tzapt.tasks;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.example.tzapt.adapters.DaysOffAdapter;
 import com.example.tzapt.decorators.CustomDayViewDecorator;
 import com.example.tzapt.helpers.Util;
-import com.example.tzapt.models.DayOff;
 import com.example.tzapt.models.Table;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.SyncHttpClient;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,19 +24,17 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
-import static com.example.tzapt.activities.R.id.calendarView;
-
 /**
- * Created by tzapt on 7/3/2017.
+ * Created by tzapt on 6/25/2017.
  */
 
-public class GetDaysOffTask extends DefaultTask {
+public class GetDaysOffAndDecorateTask extends DefaultTask {
 
-    DaysOffAdapter adapter;
+    private MaterialCalendarView calendarView;
 
-    public GetDaysOffTask(AppCompatActivity parentActivity, DaysOffAdapter adapter) {
-        super(parentActivity);
-        this.adapter = adapter;
+    public GetDaysOffAndDecorateTask(AppCompatActivity activity, MaterialCalendarView calendarView) {
+        super(activity);
+        this.calendarView = calendarView;
     }
 
     @Override
@@ -52,16 +49,17 @@ public class GetDaysOffTask extends DefaultTask {
     @Override
     protected String doInBackground(Object... params) {
 
-        getDaysOff();
+        getAllTables();
 
         return null;
     }
 
-    private List<Table> getDaysOff() {
+    private List<Table> getAllTables() {
 
         SyncHttpClient client = new SyncHttpClient();
 
         client.get(requestUrl + "/daysOff", new AsyncHttpResponseHandler() {
+
 
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
@@ -86,22 +84,23 @@ public class GetDaysOffTask extends DefaultTask {
 
         if(code == 200) {
             try {
-                adapter.clearData();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                HashSet<CalendarDay> calendarDays = new HashSet<>();
+
                 JSONArray array = new JSONArray(response);
                 for(int i = 0; i < array.length(); i++) {
                     JSONObject dayOff = array.getJSONObject(i);
 
                     String date = dayOff.getString("date");
-                    int id = dayOff.getInt("id");
 
-                    DayOff dayoff = new DayOff(id,date);
-
-                    adapter.add(dayoff);
+                    calendarDays.add(new CalendarDay((sdf).parse(date)));
                 }
 
-                adapter.notifyDataSetChanged();
+                DayViewDecorator decorator = new CustomDayViewDecorator(calendarDays);
 
-            } catch (JSONException e) {
+                calendarView.addDecorator(decorator);
+
+            } catch (JSONException | ParseException e) {
                 e.printStackTrace();
             }
         }

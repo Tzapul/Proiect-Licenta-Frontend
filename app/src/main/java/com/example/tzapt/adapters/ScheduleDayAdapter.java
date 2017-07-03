@@ -21,11 +21,11 @@ import java.util.List;
  * Created by itsix on 30/06/2017.
  */
 
-public class ScheduleDayAdapeter extends ArrayAdapter<ScheduleDay> {
+public class ScheduleDayAdapter extends ArrayAdapter<ScheduleDay> {
 
     private List<ScheduleDay> list = new ArrayList<>();
 
-    public ScheduleDayAdapeter(@NonNull Context context, @LayoutRes int resource) {
+    public ScheduleDayAdapter(@NonNull Context context, @LayoutRes int resource) {
         super(context, resource);
     }
 
@@ -54,7 +54,7 @@ public class ScheduleDayAdapeter extends ArrayAdapter<ScheduleDay> {
         if (row == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = layoutInflater.inflate(R.layout.row_reservation, parent, false);
-            scheduleDayHolder = new ScheduleDayAdapeter.DaysOffHolder();
+            scheduleDayHolder = new ScheduleDayAdapter.DaysOffHolder();
 
 
             scheduleDayHolder.summaryText = (TextView) row.findViewById(R.id.reservation_summary);
@@ -64,7 +64,7 @@ public class ScheduleDayAdapeter extends ArrayAdapter<ScheduleDay> {
             row.setTag(scheduleDayHolder);
 
         } else {
-            scheduleDayHolder = (ScheduleDayAdapeter.DaysOffHolder) row.getTag();
+            scheduleDayHolder = (ScheduleDayAdapter.DaysOffHolder) row.getTag();
         }
 
         final ScheduleDay scheduleDay = (ScheduleDay) this.getItem(position);

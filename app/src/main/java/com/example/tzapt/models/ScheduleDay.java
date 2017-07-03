@@ -6,13 +6,16 @@ package com.example.tzapt.models;
 
 public class ScheduleDay {
 
+    private int id;
+
     private String day;
 
     private int start;
 
     private int end;
 
-    public ScheduleDay(String day, int start, int end) {
+    public ScheduleDay(int id, String day, int start, int end) {
+        this.id = id;
         this.day = day;
         this.start = start;
         this.end = end;
@@ -40,5 +43,13 @@ public class ScheduleDay {
 
     public void setEnd(int end) {
         this.end = end;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

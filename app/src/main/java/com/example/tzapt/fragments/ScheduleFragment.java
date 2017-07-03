@@ -1,6 +1,5 @@
 package com.example.tzapt.fragments;
 
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,39 +11,34 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.tzapt.activities.R;
-import com.example.tzapt.adapters.DaysOffAdapter;
-import com.example.tzapt.tasks.GetDaysOffAndDecorateTask;
-import com.example.tzapt.tasks.GetDaysOffTask;
+import com.example.tzapt.adapters.ScheduleDayAdapter;
+import com.example.tzapt.tasks.GetScheduleDaysTask;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class DaysOffFragment extends Fragment {
+public class ScheduleFragment extends Fragment {
 
     private View view;
     private ListView daysOffListView;
-    private DaysOffAdapter daysOffAdapter;
+    private ScheduleDayAdapter scheduleDayAdapeter;
     private Button addButton;
 
-    public DaysOffFragment() {
+    public ScheduleFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_days_off, container, false);
 
-        daysOffListView = (ListView) view.findViewById(R.id.daysOff_list_view);
-        daysOffAdapter = new DaysOffAdapter(getActivity(), R.layout.row_reservation);
-        daysOffListView.setAdapter(daysOffAdapter);
+        daysOffListView = (ListView) view.findViewById(R.id.scheduleDay_list_view);
+        scheduleDayAdapeter = new ScheduleDayAdapter(getActivity(), R.layout.row_reservation);
+        daysOffListView.setAdapter(scheduleDayAdapeter);
 
         daysOffListView.setEmptyView(view.findViewById(R.id.empty_view));
 
-        addButton = (Button) view.findViewById(R.id.add_day_off);
+        addButton = (Button) view.findViewById(R.id.add_schedule_day);
 
-        AsyncTask task = new GetDaysOffTask((AppCompatActivity)getActivity(), daysOffAdapter);
+        AsyncTask task = new GetScheduleDaysTask((AppCompatActivity)getActivity(), scheduleDayAdapeter);
         task.execute();
 
         addButton.setOnClickListener(new View.OnClickListener() {

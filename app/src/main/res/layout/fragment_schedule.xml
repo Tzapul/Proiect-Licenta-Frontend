@@ -2,10 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.tzapt.fragments.DaysOffFragment"
+    tools:context="com.example.tzapt.fragments.ScheduleFragment"
     android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,7 +13,7 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/daysOff_list_view">
+            android:id="@+id/scheduleDay_list_view">
         </ListView>
 
         <TextView android:id="@+id/empty_view"
@@ -25,7 +24,7 @@
             android:layout_centerInParent="true"
             android:textSize="20dp"
 
-            android:text="No Days Off"/>
+            android:text="No Schedule Days Off"/>
 
     </RelativeLayout>
 
@@ -36,7 +35,7 @@
         >
 
         <Button
-            android:id="@+id/add_day_off"
+            android:id="@+id/add_schedule_day"
             android:layout_width="match_parent"
             android:layout_height="230dp"
             android:text="Add Day Off" />

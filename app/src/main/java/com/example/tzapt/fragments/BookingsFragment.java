@@ -46,7 +46,7 @@ public class BookingsFragment extends Fragment {
         reservationListView.setAdapter(myReservationsAdapter);
 
         reservationListView.setEmptyView(view.findViewById(R.id.empty_view));
-        addButton = (Button) view.findViewById(R.id.addButton);
+        addButton = (Button) view.findViewById(R.id.add_booking);
 
 
         client = (Client) getActivity().getIntent().getSerializableExtra("client");

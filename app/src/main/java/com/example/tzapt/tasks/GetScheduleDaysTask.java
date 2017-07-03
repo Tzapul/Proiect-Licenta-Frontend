@@ -3,39 +3,32 @@ package com.example.tzapt.tasks;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.example.tzapt.adapters.DaysOffAdapter;
-import com.example.tzapt.decorators.CustomDayViewDecorator;
+import com.example.tzapt.adapters.ScheduleDayAdapter;
 import com.example.tzapt.helpers.Util;
 import com.example.tzapt.models.DayOff;
+import com.example.tzapt.models.ScheduleDay;
 import com.example.tzapt.models.Table;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.SyncHttpClient;
-import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.HashSet;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
-
-import static com.example.tzapt.activities.R.id.calendarView;
 
 /**
  * Created by tzapt on 7/3/2017.
  */
 
-public class GetDaysOffTask extends DefaultTask {
+public class GetScheduleDaysTask extends DefaultTask {
 
-    DaysOffAdapter adapter;
+    private ScheduleDayAdapter adapter;
 
-    public GetDaysOffTask(AppCompatActivity parentActivity, DaysOffAdapter adapter) {
+    public GetScheduleDaysTask(AppCompatActivity parentActivity, ScheduleDayAdapter adapter) {
         super(parentActivity);
         this.adapter = adapter;
     }
@@ -61,7 +54,7 @@ public class GetDaysOffTask extends DefaultTask {
 
         SyncHttpClient client = new SyncHttpClient();
 
-        client.get(requestUrl + "/daysOff", new AsyncHttpResponseHandler() {
+        client.get(requestUrl + "/scheduleDays", new AsyncHttpResponseHandler() {
 
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
@@ -89,14 +82,16 @@ public class GetDaysOffTask extends DefaultTask {
                 adapter.clearData();
                 JSONArray array = new JSONArray(response);
                 for(int i = 0; i < array.length(); i++) {
-                    JSONObject dayOff = array.getJSONObject(i);
+                    JSONObject scheduleDayObject = array.getJSONObject(i);
 
-                    String date = dayOff.getString("date");
-                    int id = dayOff.getInt("id");
+                    int id = scheduleDayObject.getInt("id");
+                    String day = scheduleDayObject.getString("day");
+                    int start = scheduleDayObject.getInt("start");
+                    int end = scheduleDayObject.getInt("end");
 
-                    DayOff dayoff = new DayOff(id,date);
+                    ScheduleDay scheduleDay = new ScheduleDay(id, day, start, end);
 
-                    adapter.add(dayoff);
+                    adapter.add(scheduleDay);
                 }
 
                 adapter.notifyDataSetChanged();
